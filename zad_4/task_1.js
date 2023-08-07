@@ -8,10 +8,9 @@ const person = {
             throw new Error("Wrong input type. Must be an object");
         }
         Object.keys(new_info).forEach(prop => {
-            if (person.hasOwnProperty(prop)) {
+            if (!person.hasOwnProperty(prop)) {
                 Object.defineProperty(person, prop, {
                     writable: false,
-                    configurable: true,
                     value: new_info[prop],
                 })
             }
@@ -20,17 +19,17 @@ const person = {
 };
 
 for (const prop in person) {
-    Object.defineProperty(person, prop, {
-        writable: false
-    });
+    Object.defineProperty(person, prop, { writable: false });
 }
-
-Object.defineProperty(person, 'addres', {
-    value: {},
-    enumerable: false,
-    configurable: false
-})
-
-console.log("Original", person.age, person.firstName, person.email);
-person.updateInfo({ firstName: "Jane", age: 32 });
-console.log("Updated", person.age, person.firstName, person.email);
+console.log("Original", person.age, person.firstName,);
+person.updateInfo({ 
+    firstName: "Jane",
+    age: 32,
+    height: 185,
+    addres: {
+        value: {},
+        enumerable: false,
+        configurable: false
+    }
+});
+console.log("Updated", person.age, person.firstName, person.height, person.addres);
