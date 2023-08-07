@@ -21,6 +21,7 @@ const person = {
 for (const prop in person) {
     Object.defineProperty(person, prop, { writable: false });
 }
+
 console.log("Original", person.age, person.firstName,);
 person.updateInfo({ 
     firstName: "Jane",
