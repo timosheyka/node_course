@@ -5,19 +5,27 @@ function observeObject(object, callback) {
     if (typeof callback !== 'function') {
         throw new Error("Wrong input type. Must be a function");
     }
-    return new Proxy(object, {
-        get(target, prop) {
-            const value = target[prop];
-            console.log(`Accessed ${prop}`);
-            return value;
-        },
-        set(target, prop, value) {
-            console.log(`Modified ${prop}, from ${target[prop]} to ${value}`);
-            target[prop] = value;
-            return true;
-        }
-    });
-}   
+
+    const observedObject = {};
+
+    for (const prop in object) {
+        let propValue = object[prop];
+        Object.defineProperty(observedObject, prop, {
+            get() {
+                console.log(`Accessed ${prop}`);
+                return propValue;
+            },
+            set(newValue) {
+                console.log(`Modified ${prop}, from ${propValue} to ${newValue}`);
+                propValue = newValue;
+            },
+            enumerable: true,
+            configurable: true
+        });
+    }
+
+    return observedObject;
+}
 
 const person = {
     firstName: "John",
@@ -48,9 +56,9 @@ Object.defineProperty(person, 'addres', {
     value: {}, enumerable: false, configurable: false
 })
 
-const observedObject = observeObject(person, 
+const observedObject = observeObject(person,
     (message) => { console.log(message); }
 );
 
-observedObject.name;
+observedObject.firstName;
 observedObject.age = 31;
