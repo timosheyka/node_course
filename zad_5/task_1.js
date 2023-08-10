@@ -1,4 +1,4 @@
-function customFilterUnique(array, property, callback) {
+function customFilterUnique_1(array, property, callback) {
     return array
         .filter(callback)
         .filter(
@@ -17,6 +17,12 @@ const array = [
 ];
 
 console.log(
-    customFilterUnique(array, 'age', (value, index, self) =>
+    customFilterUnique_1(array, 'age', (value, index, self) =>
     self.findIndex(item => item.age === value.age) === index)
 );
+
+function customFilterUnique_2(array, callback) {
+    return array.filter(callback);
+}
+
+console.log(customFilterUnique_2([1,2,3,4,5,6,7,8], (x) => x > 3));
