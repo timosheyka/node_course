@@ -2,7 +2,7 @@
 
 You are working on a localization library that uses tagged templates to handle multiple languages. Implement a function called `localize` that acts as a quasi-tagged template. The function should take a template string and an object containing language-specific translations. It should replace placeholders in the template string with the corresponding translations from the provided object.
 
-```json
+```
 const translations = {  
 	en: {  
 	greet: "Hello",  
