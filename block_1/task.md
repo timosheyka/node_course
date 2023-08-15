@@ -2,7 +2,7 @@
 
 You are working on a localization library that uses tagged templates to handle multiple languages. Implement a function called `localize` that acts as a quasi-tagged template. The function should take a template string and an object containing language-specific translations. It should replace placeholders in the template string with the corresponding translations from the provided object.
 
-`
+```
 const translations = {  
 	en: {  
 	greet: "Hello",  
@@ -23,13 +23,13 @@ const localizedIntroduction = localize`${introduction}`;
   
 console.log(localizedGreeting); // Expected: "Bonjour" (for language "fr")  
 console.log(localizedIntroduction); // Expected: "Bienvenue sur notre site web" (for language "fr")
-`
+```
 
 ## Task 2: Advanced Tagged Template
 
 Create a function called `highlightKeywords` that acts as a tagged template. The function should take a template string and an array of keywords. It should highlight each occurrence of a keyword in the template by wrapping it in a `<span>` element with a specific CSS class. Use template literals and string manipulation to achieve this.
 
-`
+```
 const keywords = ["JavaScript", "template", "tagged"];  
 const template = "Learn \${0} tagged templates to create custom \${1} literals for \${2} manipulation.";  
   
@@ -37,13 +37,13 @@ const highlighted = highlightKeywords(template, keywords);
   
 console.log(highlighted);  
 // Expected: "Learn <span class='highlight'>JavaScript</span> tagged templates to create custom <span class='highlight'>template</span> literals for <span class='highlight'>tagged</span> manipulation."
-`
+```
 
 ## Task 3: Multiline Tagged Template
 
 Implement a multiline tagged template function called `multiline` that takes a template string and returns a string with line numbers added at the beginning of each line. The line numbers should start from 1 and increase for each line. Preserve the original indentation of each line.
 
-`
+```
 const code = multiline\`  
 function add(a, b) {  
 return a + b;  
@@ -55,7 +55,7 @@ console.log(code);
 // "1 function add(a, b) {  
 // 2 return a + b;  
 // 3 }"
-`
+```
 
 ## Task 4: Implementing Debounce Function
 
@@ -80,7 +80,7 @@ Your task is to implement a debounce function that takes a function and a delay 
 
 **Example**
 
-`
+```
 function debouncedSearch(query) {  
 // Perform search operation with the query  
 console.log("Searching for:", query);  
@@ -92,7 +92,7 @@ const inputElement = document.getElementById("search-input");
 inputElement.addEventListener("input", event => {  
 debouncedSearchHandler(event.target.value);  
 });
-`
+```
 
 ## Task 5: Implementing Throttle Function
 
@@ -116,7 +116,7 @@ Your task is to implement a throttle function that takes a function and a time i
 
 **Example**
 
-`
+```
 function onScroll(event) {  
 // Handle scroll event  
 console.log("Scroll event:", event);  
@@ -125,7 +125,7 @@ console.log("Scroll event:", event);
 const throttledScrollHandler = throttle(onScroll, 1000);  
   
 window.addEventListener("scroll", throttledScrollHandler);
-`
+```
 
 ## Task 6: Currying Function Implementation
 
@@ -144,7 +144,7 @@ Your task is to implement a currying function that converts a given function int
 
 **Example**
 
-`
+```
 function multiply(a, b, c) {  
 return a * b * c;  
 }  
@@ -156,7 +156,7 @@ const step2 = step1(3); // Returns a curried function
 const result = step2(4); // Returns the final result: 2 * 3 * 4 = 24  
   
 console.log("Result:", result); // Expected: 24
-`
+```
 
 **Challenge *(optional)***
 
