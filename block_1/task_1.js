@@ -14,7 +14,7 @@ const greeting = "greet";
 const introduction = "intro";  
   
 function localize(strings, arg, obj = translations) {
-    return translations[language][arg];
+    return obj[language][arg];
 }
 
 const localizedGreeting = localize`${greeting}`;  
