@@ -48,7 +48,7 @@ const arrayLengths = [
     2, 5, 10,
     20, 50, 100,
     200, 500, 1000,
-    2000, 5000
+    2000, 5000, // 10000 // on this value program reaches call stack size exceeded
 ];
 
 generateAndLogPerformanceTable(arrayLengths);
