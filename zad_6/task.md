@@ -35,3 +35,7 @@ Array Length | QuickSort Time | BubbleSort Time | Merge Sort Time
 10           | 0.010 ms       | 0.100 ms       | 0.015 ms
 ...
 ```
+
+### Bonus
+
+Analyze and explain why QuickSort and Merge Sort are generally faster than BubbleSort, considering the time complexity of all three algorithms.
