@@ -1,8 +1,7 @@
 function partition(arr, low, high) {
-    let pivot = arr[high];
     let i = low - 1;
     for (let j = low; j <= high - 1; j++) {
-        if (arr[j] < pivot) {
+        if (arr[j] < arr[high]) {
             i++;
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
