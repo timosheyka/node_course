@@ -2,7 +2,7 @@ const sort = require('./sort');
 
 function test(n) {
     this.sortedArray = Array.from({ length: n }, (_, i) => i + 1),
-    this.sortedBackwardArray = Array.from({ length: n }, (_, i) => n - i),
+    this.backwardArray = Array.from({ length: n }, (_, i) => n - i),
     this.randomArray = Array.from({ length: n }, (_, i) => i + 1)
         .slice().sort(() => Math.random() - 0.5)
 }
@@ -30,7 +30,7 @@ function generateAndLogPerformanceTable(arrayLengths) {
 
     const arrType = [
         'sortedArray',
-        'sortedBackwardArray',
+        'backwardArray',
         'randomArray'    
     ];
 
@@ -48,7 +48,7 @@ const arrayLengths = [
     2, 5, 10,
     20, 50, 100,
     200, 500, 1000,
-    2000, 5000, // 10000 // on this value program reaches call stack size exceeded
+    2000, 5000, 10000
 ];
 
 generateAndLogPerformanceTable(arrayLengths);

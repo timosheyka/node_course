@@ -1,7 +1,8 @@
 function partition(arr, low, high) {
+    let pivot = arr[high];
     let i = low - 1;
     for (let j = low; j <= high - 1; j++) {
-        if (arr[j] < arr[high]) {
+        if (arr[j] < pivot) {
             i++;
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
@@ -11,10 +12,23 @@ function partition(arr, low, high) {
 }
 
 function QuickSort(arr, low, high) {
-    if (low < high) {
-        let pivot = partition(arr, low, high);
-        QuickSort(arr, low, pivot - 1);
-        QuickSort(arr, pivot + 1, high);
+    let stack = [];
+    stack.push(low);
+    stack.push(high);
+
+    while (stack.length > 0) {
+        high = stack.pop();
+        low = stack.pop();
+        let p = partition(arr, low, high);
+
+        if (p - 1 > low) {
+            stack.push(low);
+            stack.push(p - 1);
+        }
+        if (p + 1 < high) {
+            stack.push(p + 1);
+            stack.push(high);
+        }
     }
     return arr;
 }
@@ -34,27 +48,39 @@ function BubbleSort(arr) {
     return arr;
 }
 
-function merge(arr, l, m, r) {
-    const n1 = m - l + 1, n2 = r - m;
-    let L = new Array(n1), R = new Array(n2);
-    for (let i = 0; i < n1; i++) L[i] = arr[l + i];
-    for (let j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
-    let i = 0, j = 0, k = l;
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) { arr[k] = L[i]; i++; }
-        else { arr[k] = R[j]; j++; }
-        k++;
+function MergeSort(arr) { 
+    const n = arr.length;
+    for (let size = 1; size <= n - 1; size = 2 * size) {
+        for (let left = 0; left < n - 1; left += 2 * size) {
+            merge(arr, left,
+                        Math.min(left + size - 1, n - 1),
+                        Math.min(left + 2 * size - 1, n - 1)
+            );
+        }
     }
-    while (i < n1) arr[k++] = L[i++];
-    while (j < n2) arr[k++] = R[j++];
+    return arr;
 }
 
-function MergeSort(arr, l, r) {
-    if (l >= r) return;
-    const m = l + parseInt((r - l) / 2);
-    MergeSort(arr, l, m);
-    MergeSort(arr, m + 1, r);
-    merge(arr, l, m, r);
+function merge(arr, l, m, r) {
+    let i, j, k, n1 = m - l + 1, n2 = r - m;
+    let leftStack = [], rightStack = [];
+
+    for (i = 0; i < n1; i++) leftStack.push(arr[l + i]);
+    for (j = 0; j < n2; j++) rightStack.push(arr[m + 1 + j]);
+
+    i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (leftStack[i] <= rightStack[j]) arr[k++] = leftStack[i++];
+        else arr[k++] = rightStack[j++];
+    }
+
+    while (i < n1) arr[k++] = leftStack[i++];
+    while (j < n2) arr[k++] = rightStack[j++];
 }
 
+
+/* 
+    QuickSort and MergeSort were implemented without recursion
+    to allow them work properly on large numbers
+*/
 module.exports = { QuickSort, BubbleSort, MergeSort }
