@@ -41,3 +41,7 @@ process.nextTick(() => {
 });
 manager.scheduleImmediate();
 ```
+
+### Bonus
+
+Create a scenario where multiple microtasks and immediate tasks are scheduled within different phases of the event loop. Analyze the execution order and provide insights into how the event loop manages these tasks.
