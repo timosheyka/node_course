@@ -29,9 +29,9 @@ function asyncScenario() {
 
     // micro-task - second in micro-task queue
     Promise.resolve()
-        .then(() => {
+    .then(() => {
             console.log("Promise 1"); // (3)
-        });
+    });
 
     // macro-task - third on web-api,  but second in macro-task queue
     setTimeout(() => {
@@ -40,9 +40,9 @@ function asyncScenario() {
 
     // micro-task - third in micro-task queue
     Promise.resolve()
-        .then(() => {
+    .then(() => {
             console.log("Promise 2"); // (4)
-        });
+    });
 }
 
 asyncScenario();
