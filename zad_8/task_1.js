@@ -1,18 +1,9 @@
-function promiseAll(promise_array) {
-    const results = [];
-    return new Promise((resolve, reject) => {
-      let completedPromises = 0;
-  
-      promise_array.forEach((promise, index) => {
-        promise
-          .then(result => {
-            results[index] = result;
-            if (++completedPromises === promise_array.length) 
-            { resolve(results); }
-          })
-          .catch(error => { reject(error);});
-      });
-    });
+const promiseAll = async (promise_array) => {
+  const result = [];
+  for (const promise of promise_array) {
+    result.push(await promise);
+  }
+  return result;
 }
 
 const promises = [
