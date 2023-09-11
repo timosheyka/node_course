@@ -1,3 +1,4 @@
+// class representation of individual Book
 class Book {
     constructor(title, author, isbn, price, availability) {
         this.title = title;
@@ -6,11 +7,9 @@ class Book {
         this.price = price;
         this.availability = availability;
     }
-
-    isAvailable() {
-        return this.availability > 0;
-    }
 }
+
+// inherites Books class to allow specify the genre
 
 class FictionBook extends Book {
     constructor(title, author, isbn, price, availability) {
@@ -25,7 +24,10 @@ class NonFictionBook extends Book {
         this.genre = "Non-Fiction";
     }
 }
-  
+
+
+// class representation of User
+// methods: addToCart, removeFromCart, createAnOder
 class User {
     constructor(name, email, userId) {
         this.name = name;
@@ -34,12 +36,16 @@ class User {
         this.cart = new Cart(this);
     }
 
+    // whether the book is already in cart, increase quantity,
+    // otherwise adds new book to the cart
     addToCart(book) {
         const existingItem = this.cart.items.find((item) => item.book === book);
         if (existingItem) { existingItem.quantity++; }
         else { this.cart.items.push({ book, quantity: 1 }); }
     }
 
+    // removes the book from the cart, whether there is no such book in the cart,
+    // send proper info to user 
     removeFromCart(book) {
         const index = this.cart.items.findIndex((item) => item.book === book);
         if (index !== -1 && --this.cart.items[index].quantity === 0) {
@@ -47,17 +53,20 @@ class User {
         } else { console.log('Cannot remove a non-existing book from the cart.'); }
     }
 
+    // creates a list of books, that user wants to buy
     createAnOrder(books) {
         new Order(this, books).placeAnOrder();
     }
 }
 
+// class representation of a Cart
 class Cart {
     constructor(user) {
         this.user = user;
         this.items = [];
     }
 
+    // shows what's inside of the cart
     showCart() {
         if (this.items.length === 0) {
             console.log('Your cart is empty.');
@@ -69,6 +78,7 @@ class Cart {
         }
     }
 
+    // calculates the total value of a cart
     calculateTotalPrice() {
         return this.items.reduce((total, item) => {
                 return total + item.quantity * item.book.price;
@@ -76,14 +86,17 @@ class Cart {
     }
 }
 
+// class representation of an Order
 class Order {
     constructor(user, books) {
         this.user = user;
+        // note - totalPrice can be assigned in constructor, because it never reassigned
         this.totalPrice = books.reduce((total, item) => {
             return total + item.price; }, 0);
         this.order = books.map(book => `${book.title} - $${book.price} `);
     }
 
+    // show the info about placed order
     placeAnOrder() {
         console.log(`${this.user.name} want's to buy ${this.order}for $${this.totalPrice}`);
     }
