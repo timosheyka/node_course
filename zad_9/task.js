@@ -28,11 +28,12 @@ class NonFictionBook extends Book {
 
 // class representation of User
 // methods: addToCart, removeFromCart, createAnOder
+// (not in the Cart/Order, because User takes those action)
 class User {
-    constructor(name, email, userId) {
+    constructor(name, email) {
         this.name = name;
         this.email = email;
-        this.userId = userId;
+        this.userId = Math.random().toString(36).substring(2, 10);
         this.cart = new Cart(this);
     }
 
@@ -60,6 +61,7 @@ class User {
 }
 
 // class representation of a Cart
+// methods: showCart, calculateTotalPrice (all that Cart can tell about itself)
 class Cart {
     constructor(user) {
         this.user = user;
@@ -87,6 +89,7 @@ class Cart {
 }
 
 // class representation of an Order
+// idea - object that can be placed anywhere in the store as independent unit
 class Order {
     constructor(user, books) {
         this.user = user;
