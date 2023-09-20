@@ -254,7 +254,6 @@ class Graph {
             visited.add(currentVertex);
 
             if (currentVertex === end) {
-                // Build the path from end to start
                 const path = [];
                 let currentNode = end;
                 while (currentNode !== start) {
@@ -273,8 +272,7 @@ class Graph {
                 }
             }
         }
-
-        return null; // If there is no path from start to end
+        return 'Path Not Found';
     }
 
 }
