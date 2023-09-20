@@ -205,7 +205,6 @@ class Graph {
         
         this.dfsArr = [];
         this.bfsArr = [];
-        this.DijkstraArr = [];
     }
     addVertex(vertex) {
         if (!this.adjList.has(vertex)) {
@@ -246,8 +245,38 @@ class Graph {
         }
     }
     Dijkstra(start, end) {
+        const visited = new Set();
+        const previousNodes = {};
+        const queue = [start];
 
+        while (queue.length > 0) {
+            const currentVertex = queue.shift();
+            visited.add(currentVertex);
+
+            if (currentVertex === end) {
+                // Build the path from end to start
+                const path = [];
+                let currentNode = end;
+                while (currentNode !== start) {
+                    path.unshift(currentNode);
+                    currentNode = previousNodes[currentNode];
+                }
+                path.unshift(start);
+                return path;
+            }
+
+            const neighbors = this.adjList.get(currentVertex);
+            for (const neighbor of neighbors) {
+                if (!visited.has(neighbor)) {
+                    previousNodes[neighbor] = currentVertex;
+                    queue.push(neighbor);
+                }
+            }
+        }
+
+        return null; // If there is no path from start to end
     }
+
 }
 
 
@@ -344,7 +373,6 @@ function GraphScenario() {
     console.log(graph.dfsArr);
     graph.bfs('A');
     console.log(graph.bfsArr);
-    graph.Dijkstra('A', 'E');
-    console.log(graph.DijkstraArr);
+    console.log(graph.Dijkstra('A', 'E'));
 }
 GraphScenario();
