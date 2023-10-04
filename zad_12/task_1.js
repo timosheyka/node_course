@@ -137,9 +137,3 @@ console.log(
         : 'Doesn\'t match original JSONParse'
 );
 
-/** Review on using regex
- * can be avoided by iterating over the string character by character
- * becomes to complex to use regex for nested elements
- * can be very usefull on identifying some 'tiny' patterns (e.g ctrl+F in docs)
- * that task didn't unlock full potential of regex
-*/
