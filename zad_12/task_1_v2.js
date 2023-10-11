@@ -46,9 +46,7 @@ function myJSONParse(JSONString) {
     }
 
     function array(str, startIdx = 1) {
-        let arr = [];
-        let idx = startIdx; let v;
-
+        let arr = []; idx = startIdx; v;
         do {
             switch (str[idx]) {
                 case '{':
